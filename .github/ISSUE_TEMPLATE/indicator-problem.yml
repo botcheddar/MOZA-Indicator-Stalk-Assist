@@ -1,0 +1,29 @@
+name: Indicator problem
+description: Report input, flash count or background app behavior
+labels: [bug]
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: App and game version
+      placeholder: App 2.0.1, game and version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What movement did you make?
+      description: Include side, quick flick or hold, centre return and any repeat/switch.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Relevant log excerpt, if needed
+      description: Remove personal paths and device-instance IDs. Do not attach your full game profile or InputValidation.ini.

@@ -1,0 +1,92 @@
+INSTALL AND ROLLBACK - MOZA INDICATOR STALK ASSIST 2.0.1 PREVIEW
+
+1. Extract this package to a permanent writable folder. Keep MOZAIndicatorStalkAssist.exe
+   beside Comfort.ini. Do not run directly inside the ZIP.
+2. Close the game before installing its integration.
+3. Follow the relevant game section below, backing up the controls first.
+4. Run MOZAIndicatorStalkAssist.exe. Complete controller setup if requested (three quick
+   flicks each way and a 2-second hold/centre each way). Select Start with Windows
+   for quiet sign-in startup. No administrator rights are needed for the app.
+5. Test with the vehicle parked, ignition/electrics on, hazards off, game focused
+   and unpaused. Check normal left/right holds first, then quick flicks.
+
+ETS2 / ATS
+
+Copy integrations/scs/MozaComfortPlugin.dll into each chosen game's:
+  bin\win_x64\plugins\MozaComfortPlugin.dll
+Create the plugins folder if absent. Leave every other plugin in place.
+Accept the game's SDK/plugin acknowledgement if displayed at startup.
+The app should show Connected when the game loads its SDK.
+
+The active profile must already reconstruct the physical stalk position and
+include semantical.lblinkerh and semantical.rblinkerh in its hold mixes.
+Example ONLY (replace joyX with the stalk's real joystick alias):
+  mix lblinkerh: memory(joyX.b10?0 | joyX.b9?0, joyX.b10?0 & !(joyX.b9?0)) | semantical.lblinkerh?0
+  mix rblinkerh: memory(joyX.b8?0 | joyX.b9?0, joyX.b8?0 & !(joyX.b9?0)) | semantical.rblinkerh?0
+These are example mix expressions, not a complete controls.sii file.
+Keep existing keyboard/unrelated controls. Do not copy another person's whole
+profile: joystick ordering and hardware assignments can differ.
+The DLL adds semantic hold states and leaves the physical memory branch alone.
+A conflicting physical toggle binding may need review in that profile.
+
+BEAMNG.DRIVE
+
+Use the launcher > Manage User Folder > Open in Explorer to find the ACTIVE
+user folder. It may be a custom location. Do not assume the game install folder
+is the user folder.
+
+With BeamNG closed, copy integrations/beamng/moza_turn_signal_assist.zip into
+that active user folder's mods directory. Leave the ZIP intact. Enable it in
+BeamNG's Mod Manager if it is listed as disabled.
+
+In Controls, bind ONLY these three new actions under vehicle controls:
+  MOZA stalk: left position   -> the physical left-entry pulse
+  MOZA stalk: right position  -> the physical right-entry pulse
+  MOZA stalk: centre position -> the distinct return-to-centre pulse
+On the tested firmware these are button9, button7 and button8 in BeamNG's
+zero-based input map, corresponding to DirectInput buttons 10, 8 and 9.
+Remove duplicate left/right toggle and centre-cancel bindings for those SAME
+three physical controls. Preserve all other bindings, including Better Bindings
+cruise and lighting functions. Do not remove Better Bindings if other controls
+still depend on it. The new mod itself does not require Better Bindings.
+
+Load a vehicle. The app should show Mod connected. Quick taps complete three
+total physical flashes by default. Holding the soft position beyond 500 ms or
+using full detent keeps normal indication until centre. The vehicle integration
+provides that normal position control even when the desktop app is closed;
+tap continuation requires a fresh enabled desktop session.
+
+DAILY USE
+
+You can leave MOZA Pit House and your existing unrelated input tools as usual.
+Once configured, no Enable comfort click is needed: the app starts quietly and
+reconnects automatically to its validated stalk. Open it again to see settings,
+or use its tray icon. Changing a game's flash dropdown saves immediately.
+Closing the settings window keeps the app running; tray > Exit stops it.
+
+A same-side repeat suppresses continuation on that movement's centre. Opposite
+input switches sides. Full detent always takes priority over a tap timer.
+After pause/focus loss/reconnect, use fresh stalk movement; old taps are discarded.
+
+ADVANCED CONFIGURATION
+
+Close the app before editing Comfort.ini. Booleans are 0/1.
+TapThresholdMs accepts 50..1500 ms, inclusive at the quick-tap boundary.
+Each game count accepts 1..10. UseTelemetryBlinkCounting=1 is recommended.
+MaxComfortMs is a bounded safety watchdog; the app extends it for higher counts.
+Time fallback is available for SCS only, is approximate, and counts duration
+from the initial direction. BeamNG always observes physical lamp edges.
+Button IDs in [Comfort] are ONE-BASED DirectInput IDs, not BeamNG indexes.
+If firmware maps differ, identify them in the button test before enabling output.
+InputValidation.ini is local to your controller; do not share it as a default.
+
+ROLLBACK
+
+Uncheck Start with Windows, then tray > Exit. Close all affected games.
+For SCS, remove ONLY MozaComfortPlugin.dll from the game's plugins folder.
+Restore any profile backup if you changed that profile during setup.
+For BeamNG, restore your three original bindings, then remove or disable ONLY
+moza_turn_signal_assist.zip. The original mod archive is never edited.
+Keep the portable app folder until any needed settings/logs have been saved.
+Moving the portable folder requires reselecting Start with Windows at the new
+location. The sole startup entry is HKCU Run, value StalkAssist.

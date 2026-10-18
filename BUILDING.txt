@@ -1,0 +1,27 @@
+BUILDING STALK ASSIST
+
+Windows x64, PowerShell, internet access on first bootstrap. Exit any running
+MOZA Indicator Stalk Assist instance before running the GUI and UDP integration tests.
+
+Run from the source directory:
+  .\Build.ps1 -Bootstrap
+Subsequent builds can use .\Build.ps1 while the pinned dependencies remain.
+
+The script downloads Zig 0.15.2 and Lua 5.1.5 from their official distribution
+sites when absent and checks SHA256 before extraction. Official SCS SDK headers
+and their MIT notice are included. No proprietary game source or Better Bindings
+source is required. The compiler and test Lua runtime stay in vendor/build.
+
+Tests write local logs/; binaries are in release/. The build never installs into
+games, replaces profiles or registers Windows startup. The --smoke-test GUI
+mode remains disabled and exits after 1.2 seconds. --exit gracefully asks a
+running v2 helper to stop. --install-startup and --remove-startup are explicit
+per-user startup commands, equivalent to the UI checkbox.
+
+Run .\tools\Build-BeamNG-Mod.ps1 to package src/beamng into the separate mod ZIP.
+The release helper's filename is MozaComfort.exe for source compatibility; the
+public portable package calls this same binary MOZAIndicatorStalkAssist.exe. The app locates
+Comfort.ini/InputValidation.ini/logs beside its own executable.
+
+Do not commit runtime InputValidation.ini, private profiles, logs, backups,
+custom input maps or game traces. Include only reproducible generic test data.

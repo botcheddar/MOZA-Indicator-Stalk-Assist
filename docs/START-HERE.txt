@@ -1,0 +1,23 @@
+START HERE - MOZA INDICATOR STALK ASSIST
+
+1. Extract this download to a permanent folder. Keep the files together.
+2. Connect your MOZA stalk. Open MOZAIndicatorStalkAssist.exe.
+3. Complete controller setup if requested: three quick flicks LEFT and three
+   RIGHT, then a two-second hold and return to centre on each side.
+4. Install the integration for your game:
+   ETS2/ATS: copy integrations/scs/MozaComfortPlugin.dll to that game's
+   bin/win_x64/plugins folder. Your profile must have the position/semantic
+   hold bindings described in INSTALL.txt.
+   BeamNG: put integrations/beamng/moza_turn_signal_assist.zip in the active
+   user folder's mods directory. Leave the ZIP intact. Bind MOZA stalk: left
+   position, right position and centre position; remove duplicate old signal
+   bindings for those same three controls only. Keep your other bindings.
+5. Test while parked: normal holds until centre, then a quick flick. Defaults
+   are FIVE total flashes in ETS2/ATS and THREE in BeamNG.
+6. Select Start with Windows for quiet automatic operation. Closing the window
+   keeps the app in the tray. Tray > Exit stops it.
+
+Full tutorial:
+https://github.com/botcheddar/MOZA-Indicator-Stalk-Assist/blob/main/docs/SETUP.md
+Offline details: INSTALL.txt. No separate Better Bindings download is needed
+for these indicator actions; keep it if your other controls depend on it.

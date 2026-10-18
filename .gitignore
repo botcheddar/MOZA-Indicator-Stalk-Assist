@@ -1,0 +1,21 @@
+# Generated binaries, local dependencies and private runtime data
+build/
+logs/
+release/
+Backups/
+integration/
+InputValidation.ini
+**/InputValidation.ini
+**/logs/
+*.sii
+*.diff
+*.log
+vendor/zig/
+vendor/zig.zip
+vendor/lua/
+
+# Published binaries belong in GitHub Releases
+*.exe
+*.dll
+*.zip
+

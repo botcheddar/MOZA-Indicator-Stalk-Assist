@@ -1,0 +1,51 @@
+TEST RESULTS - MOZA INDICATOR STALK ASSIST 2.0.1 PREVIEW
+
+Automated deterministic and adapter checks: PASS
+  C++ state engine             35
+  SCS plugin/official SDK mock  24
+  Buffered input decoder       10
+  Shared-memory safety         11
+  App settings/protocol        12
+  Actual loopback UDP bridge    8
+  BeamNG vehicle Lua           31
+  BeamNG game-engine Lua       16
+  TOTAL                       147 passed, zero failed
+
+Additional PASS checks: actual DLL load and exported SDK entry points; imported
+Windows-system dependencies only; hidden GUI startup/shutdown; duplicate helper
+rejected; native settings layout; pause/resume controls; controller setup reuse.
+Tests include 250,000 rapid alternating inputs and a 12-hour simulated session.
+Lua tests run using official Lua 5.1.5 source, compatible with the tested game
+extension syntax; BeamNG uses its own runtime. No tests emulate the whole game.
+
+Observed before this upgrade:
+The real MOZA stalk produced direction/centre pulse sequences reliably. The user
+verified ETS2's earlier THREE-flash build in both directions, repeated flick
+cancellation, opposite switching, and full-detent priority.
+
+Physical validation on 18 October 2026:
+The user reported the BeamNG checklist worked perfectly: three-flash quick flicks,
+held soft position, full detent, repeat cancellation and opposite switching.
+Real game-to-app messages corroborated direction/centre timing. The user also
+confirmed ETS2 FIVE flashes; the SCS trace records completion at five lamp flashes.
+
+Still requires real testing of this preview:
+- FIVE-flash behavior in ATS. ETS2 FIVE-flash operation has been confirmed.
+- Wider vehicle and firmware coverage beyond the physically tested car.
+- Hazards, pause, alt-tab, app exit/restart, stalk disconnect/reconnect.
+- Low frame rates, slow motion, custom vehicles, prolonged actual driving.
+
+Simulation proves state transitions against modeled native setters/telemetry.
+It does not prove every vehicle's electrics implementation or real game callback
+ordering. The BeamNG code was checked against installed game version 0.39.4.0.
+SCS five-flash logic uses the same semantic output mechanism as the earlier
+physically validated three-flash ETS2 build.
+
+At very low frame rates, lamp edges entirely between observations cannot be
+reconstructed. The watchdog ends stalled continuation rather than claiming
+unobserved flashes. A frozen game processes cleanup only when it runs again.
+Unsigned local preview binaries are included; no code-signing claim is made.
+
+Display update 2.0.1: per-monitor-v2 DPI awareness, DPI-scaled fonts/controls,
+change-only text refresh and buffered background painting replace repeated full
+repaints. Automated suites passed again after these changes. The user confirmed sharp text and no flicker on the 4K monitor on 18 October 2026.

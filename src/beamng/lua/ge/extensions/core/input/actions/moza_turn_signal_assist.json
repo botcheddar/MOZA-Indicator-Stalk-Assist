@@ -1,0 +1,5 @@
+{
+  "mzc_stalk_left":{"cat":"vehicle","order":24.11,"ctx":"vlua","onDown":"extensions.use('mozaComfort').direction(-1)","title":"MOZA stalk: left position","desc":"Signal immediately; a quick return to centre finishes three flashes."},
+  "mzc_stalk_right":{"cat":"vehicle","order":24.12,"ctx":"vlua","onDown":"extensions.use('mozaComfort').direction(1)","title":"MOZA stalk: right position","desc":"Signal immediately; a quick return to centre finishes three flashes."},
+  "mzc_stalk_centre":{"cat":"vehicle","order":24.13,"ctx":"vlua","onDown":"extensions.use('mozaComfort').centre()","title":"MOZA stalk: centre position","desc":"Release a held signal or finish a quick flick's three total flashes."}
+}

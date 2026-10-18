@@ -1,0 +1,15 @@
+THIRD-PARTY NOTICES
+
+The original MOZA Indicator Stalk Assist application, tests and BeamNG add-on are MIT licensed.
+See LICENSE.txt. Third-party components retain their own notices:
+
+SCS Software SDK headers: MIT, copyright SCS Software; see licenses/SCS-SDK.txt.
+Windows binaries are built with the official Zig toolchain. Compiler/runtime
+components' notices are included under licenses/: Zig, libc++, libc++abi,
+libunwind and MinGW-w64. libc++/libc++abi/libunwind use the LLVM Apache 2.0
+license with LLVM exceptions, with legacy notices as included upstream.
+Lua 5.1.5 is a build/test dependency fetched separately; see licenses/Lua.txt.
+
+No BeamNG, ETS2, ATS or Better Bindings source/assets are redistributed. Better
+Bindings is not a dependency of the add-on's indicator actions and is not covered
+by this project's MIT license. Games and MOZA hardware are obtained separately.

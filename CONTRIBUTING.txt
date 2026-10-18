@@ -1,0 +1,17 @@
+CONTRIBUTING
+
+Use the pinned build in BUILDING.txt. Run the regression suites for changes to
+input handling, state transitions, game integration or background lifecycle.
+Keep automatic checks separate from real game validation in your report.
+
+Preserve immediate normal turn activation, centre cancellation and full-detent
+priority. MOZA direction/centre events are position pulses, not held buttons.
+Count the first physical flash; do not add a second independent flash sequence.
+Respect focus, hazards, stale sessions and output ownership when changing adapters.
+
+Original project contributions are MIT licensed. Do not copy incompatible
+third-party mod or proprietary game source into this project. Keep SDK/runtime
+notices when needed. Do not commit private profiles, device validation or real logs.
+
+Issues should include app/game versions, the movement performed and expected vs
+observed behavior. Redact personal paths and device-instance IDs from excerpts.

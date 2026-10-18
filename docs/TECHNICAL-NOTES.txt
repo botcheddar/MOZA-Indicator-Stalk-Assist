@@ -1,0 +1,49 @@
+TECHNICAL NOTES - MOZA INDICATOR STALK ASSIST 2.0.1
+
+SCS: one native x64 DLL exposes the official Input and Telemetry SDK entry
+points for ETS2 (eut2) and ATS. Separate local shared-memory names carry app
+commands/heartbeats and each game's diagnostics. Boolean semantic hold inputs
+lblinkerh/rblinkerh extend only a quick-flick sequence. The original physical
+memory expressions continue to own normal held indication. Buffered nonexclusive
+DirectInput reads 1024 events, reconstructs GetTickCount timestamps across wrap,
+ignores release as centre, and rejects stale/future/overflowed input history.
+
+BeamNG: original Lua modules provide a separate action JSON and use existing
+native direct indicator setters on state changes only. Setter calls reset the
+native blink phase, so repeating them every frame would break flashing. Direction
+signals immediately; quick centre preserves that phase until the target falling
+edge. Normal holds have no continuation timer. Actual signal_L/signal_R edges
+count total flashes, including the initial physical flash. Native keyboard
+steering-cancel ownership is cleared when physical stalk control takes over.
+
+A game-engine module exchanges bounded numeric UDP packets with the desktop app
+only on 127.0.0.1:40518. No strings received over the socket are evaluated as code.
+Known request sequences, short response age, source address/port and range checks
+reject stale or malformed commands. Vehicle commands carry a monotonic deadline;
+helper disappearance clears only extra flashes, preserving normal latched input.
+Vehicle changes release the old vehicle's owned output. Hazards and native manual
+overrides are respected. The background app does not simulate keyboard keys.
+
+Single-instance enforcement prevents duplicate helpers. A different helper epoch
+clears pending state. SCS output also requires foreground game, SDK driving state,
+known hazards off, valid lamp telemetry, controller connection and a fresh command.
+BeamNG extra flashes require the foreground BeamNG process and a fresh command;
+pause is also gated by the game module. The vehicle integration retains standalone
+normal position control without the helper. No network traffic leaves loopback.
+
+The UI uses plain Win32 controls, offers independent saved counts and opt-in
+per-user Windows sign-in startup. It does not install a Windows service or require
+admin at runtime. Closing the window hides it; explicit Exit disables commands.
+Controller reconnection is retried every two seconds. Logs are local and rotate
+above 5 MiB on startup; diagnostic display and game rings are bounded.
+
+Sources consulted:
+https://documentation.beamng.com/modding/input/actions/
+https://documentation.beamng.com/modding/programming/extensions/
+https://modding.scssoft.com/wiki/Documentation/Engine/SDK/Telemetry
+https://modding.scssoft.com/wiki/Documentation/Engine/Advanced_input_configuration
+https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee416595(v=vs.85)
+
+The mod does not copy BeamNG or Better Bindings implementation code. Better
+Bindings is a separate project with its own license. No branding, affiliation
+or endorsement by MOZA, SCS Software or BeamNG is implied.
