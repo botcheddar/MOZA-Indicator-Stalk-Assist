@@ -1,6 +1,6 @@
 TEST RESULTS - MOZA INDICATOR STALK ASSIST 2.0.1 PREVIEW
 
-Automated deterministic and adapter checks: PASS
+Automated checks
   C++ state engine             35
   SCS plugin/official SDK mock  24
   Buffered input decoder       10
@@ -11,41 +11,32 @@ Automated deterministic and adapter checks: PASS
   BeamNG game-engine Lua       16
   TOTAL                       147 passed, zero failed
 
-Additional PASS checks: actual DLL load and exported SDK entry points; imported
-Windows-system dependencies only; hidden GUI startup/shutdown; duplicate helper
-rejected; native settings layout; pause/resume controls; controller setup reuse.
-Tests include 250,000 rapid alternating inputs and a 12-hour simulated session.
-Lua tests run using official Lua 5.1.5 source, compatible with the tested game
-extension syntax; BeamNG uses its own runtime. No tests emulate the whole game.
+Additional checks passed: DLL loading and SDK exports, Windows-system imports,
+hidden GUI startup/shutdown, single-instance enforcement, settings controls,
+pause/resume and saved controller setup. Stress coverage includes 250,000 rapid
+alternating inputs and a 12-hour simulated session.
 
-Observed before this upgrade:
-The real MOZA stalk produced direction/centre pulse sequences reliably. The user
-verified ETS2's earlier THREE-flash build in both directions, repeated flick
-cancellation, opposite switching, and full-detent priority.
+Lua tests run with Lua 5.1.5. The game uses its own runtime; simulated callbacks
+and lamp states do not replace in-game testing.
 
-Physical validation on 18 October 2026:
-The user reported the BeamNG checklist worked perfectly: three-flash quick flicks,
-held soft position, full detent, repeat cancellation and opposite switching.
-Real game-to-app messages corroborated direction/centre timing. The user also
-confirmed ETS2 FIVE flashes; the SCS trace records completion at five lamp flashes.
+Hardware checks - 18 October 2026
+- ETS2: five-flash continuation passed. Lamp telemetry recorded completion
+  after five observed flashes.
+- BeamNG 0.39.4.0: three-flash quick flicks, held soft position, full detent,
+  repeat cancellation and opposite switching passed. Direction/centre timings
+  were also captured through the game-to-app connection.
+- Display: sharp text and no flicker on a 4K monitor after the 2.0.1 DPI and
+  repaint update.
 
-Still requires real testing of this preview:
-- FIVE-flash behavior in ATS. ETS2 FIVE-flash operation has been confirmed.
-- Wider vehicle and firmware coverage beyond the physically tested car.
-- Hazards, pause, alt-tab, app exit/restart, stalk disconnect/reconnect.
-- Low frame rates, slow motion, custom vehicles, prolonged actual driving.
+Remaining coverage
+- ATS: physical five-flash check.
+- Other vehicles and stalk firmware.
+- Systematic in-game recovery checks for hazards, pause, alt-tab, app restart,
+  controller disconnect/reconnect, low frame rates and long driving sessions.
 
-Simulation proves state transitions against modeled native setters/telemetry.
-It does not prove every vehicle's electrics implementation or real game callback
-ordering. The BeamNG code was checked against installed game version 0.39.4.0.
-SCS five-flash logic uses the same semantic output mechanism as the earlier
-physically validated three-flash ETS2 build.
+The automated suites passed again after the display changes. The preview label
+remains while ATS and wider hardware coverage are pending.
 
 At very low frame rates, lamp edges entirely between observations cannot be
-reconstructed. The watchdog ends stalled continuation rather than claiming
-unobserved flashes. A frozen game processes cleanup only when it runs again.
-Unsigned local preview binaries are included; no code-signing claim is made.
-
-Display update 2.0.1: per-monitor-v2 DPI awareness, DPI-scaled fonts/controls,
-change-only text refresh and buffered background painting replace repeated full
-repaints. Automated suites passed again after these changes. The user confirmed sharp text and no flicker on the 4K monitor on 18 October 2026.
+reconstructed. A watchdog ends stalled continuation. A frozen game processes
+cleanup when it runs again. Preview binaries are unsigned.

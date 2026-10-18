@@ -1,7 +1,7 @@
 THIRD-PARTY NOTICES
 
 The original MOZA Indicator Stalk Assist application, tests and BeamNG add-on are MIT licensed.
-See LICENSE.txt. Third-party components retain their own notices:
+See LICENSE. Third-party components retain their own notices:
 
 SCS Software SDK headers: MIT, copyright SCS Software; see licenses/SCS-SDK.txt.
 Windows binaries are built with the official Zig toolchain. Compiler/runtime
